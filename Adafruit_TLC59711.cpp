@@ -71,7 +71,7 @@ void Adafruit_TLC59711::write(void) {
   command |= 0x16;
 
   command <<= 7;
-  command |= BCb;
+  command |= BCr;
 
   command <<= 7;
   command |= BCg;

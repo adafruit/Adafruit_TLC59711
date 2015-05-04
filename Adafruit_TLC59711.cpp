@@ -19,6 +19,8 @@
 #include <Adafruit_TLC59711.h>
 #include <SPI.h>
 
+SPISettings SPI_SETTINGS(1000000, MSBFIRST, SPI_MODE0);
+
 Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n, uint8_t c, uint8_t d) {
   numdrivers = n;
   _clk = c;
@@ -34,9 +36,6 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n) {
   _clk = -1;
   _dat = -1;
 
-  SPI.setBitOrder(MSBFIRST);
-  SPI.setClockDivider(SPI_CLOCK_DIV8);
-  SPI.setDataMode(SPI_MODE0);
   BCr = BCg = BCb = 0x7F;
 
   pwmbuffer = (uint16_t *)calloc(2, 12*n);
@@ -61,6 +60,9 @@ void  Adafruit_TLC59711::spiwriteMSB(uint32_t d) {
 }
 
 void Adafruit_TLC59711::write(void) {
+	
+  SPI.beginTransaction(SPI_SETTINGS);
+
   uint32_t command;
 
   // Magic word for write
@@ -94,10 +96,15 @@ void Adafruit_TLC59711::write(void) {
     }
   }
 
-  if (_clk >= 0)
+  if (_clk >= 0) {
     delayMicroseconds(200);
-  else
+  }
+  else {
     delayMicroseconds(2);
+  }
+
+  SPI.endTransaction();
+
   sei();
 }
 

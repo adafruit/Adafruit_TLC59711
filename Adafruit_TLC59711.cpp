@@ -34,9 +34,6 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n) {
   _clk = -1;
   _dat = -1;
 
-  SPI.setBitOrder(MSBFIRST);
-  SPI.setClockDivider(SPI_CLOCK_DIV8);
-  SPI.setDataMode(SPI_MODE0);
   BCr = BCg = BCb = 0x7F;
 
   pwmbuffer = (uint16_t *)calloc(2, 12*n);
@@ -80,6 +77,11 @@ void Adafruit_TLC59711::write(void) {
   command |= BCb;
 
   cli();
+  
+  if (_clk < 0) {
+    SPI.beginTransaction(SPISettings(500000, MSBFIRST, SPI_MODE0));
+  }
+  
   for (uint8_t n=0; n<numdrivers; n++) {
     spiwriteMSB(command >> 24);
     spiwriteMSB(command >> 16);
@@ -94,10 +96,13 @@ void Adafruit_TLC59711::write(void) {
     }
   }
 
-  if (_clk >= 0)
+  if (_clk >= 0) {
     delayMicroseconds(200);
-  else
+  } else {
+    SPI.endTransaction();
     delayMicroseconds(2);
+  }
+
   sei();
 }
 
@@ -122,8 +127,6 @@ boolean Adafruit_TLC59711::begin() {
   if (_clk >= 0) {
     pinMode(_clk, OUTPUT);
     pinMode(_dat, OUTPUT);
-  } else {
-    SPI.begin();
   }
   return true;
 }

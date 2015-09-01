@@ -83,3 +83,17 @@ void Wheel(uint8_t ledn, uint16_t WheelPos) {
     tlc.setLED(ledn, 0, 3*WheelPos, 65535 - 3*WheelPos);
   }
 }
+
+
+//All RGB Channels on full colour
+//Cycles trough all brightness settings from 0 up to 127
+void increaseBrightness(){
+  for(uint16_t i=0; i<8*NUM_TLC59711; i++) {
+      tlc.setLED(i, 65535, 65535, 65535);
+  }
+  for(int i = 0; i < 128; i++){
+    tlc.simpleSetBrightness(i);
+    tlc.write();
+    delay(1000);
+  }
+}

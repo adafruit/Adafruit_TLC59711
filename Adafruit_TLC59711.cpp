@@ -126,7 +126,7 @@ void Adafruit_TLC59711::simpleSetBrightness(uint8_t BC){
   BCr = BCg = BCb = BC;
 }
 
-void Adafruit_TLC59711::setBrightness(uint8_t BCr, uint8_t BCg, uint8_t BCb){
+void Adafruit_TLC59711::setBrightness(uint8_t bcr, uint8_t bcg, uint8_t bcb){
   if(bcr > 127){
     bcr = 127; //maximum possible value since BC can only be 7 bit
   } else if(bcr < 0){

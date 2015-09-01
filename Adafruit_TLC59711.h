@@ -32,7 +32,8 @@ class Adafruit_TLC59711 {
   void setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b);
   void write(void);
   void spiwriteMSB(uint32_t d);
-  void setBrightness(uint8_t lednum)
+  void setBrightness(uint8_t bcr, uint8_t bcg, uint8_t bcb);
+  void simpleSetBrightness(uint8_t BC);
 
  private:
   uint16_t *pwmbuffer;

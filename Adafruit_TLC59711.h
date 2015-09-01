@@ -32,11 +32,12 @@ class Adafruit_TLC59711 {
   void setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b);
   void write(void);
   void spiwriteMSB(uint32_t d);
+  void setBrightness(uint8_t lednum)
 
  private:
   uint16_t *pwmbuffer;
 
-  uint8_t BCr, BCg, BCb;
+  uint8_t BCr, BCg, BCb; //amount of voltage sent into LEDs min: 0 (LEDs off) max: 127(LEDs max brightness)
   int8_t numdrivers, _clk, _dat;
 
 };

@@ -24,7 +24,7 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n, uint8_t c, uint8_t d) {
   _clk = c;
   _dat = d;
 
-  BCr = BCg = BCb = 0x7F;
+  BCr = BCg = BCb = 0x7F; //default 100% brigthness
 
   pwmbuffer = (uint16_t *)calloc(2, 12*n);
 }
@@ -37,7 +37,7 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n) {
   SPI.setBitOrder(MSBFIRST);
   SPI.setClockDivider(SPI_CLOCK_DIV8);
   SPI.setDataMode(SPI_MODE0);
-  BCr = BCg = BCb = 0x7F;
+  BCr = BCg = BCb = 0x7F; //default 100% brigthness
 
   pwmbuffer = (uint16_t *)calloc(2, 12*n);
 }
@@ -113,6 +113,43 @@ void Adafruit_TLC59711::setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t 
   setPWM(lednum*3, r);
   setPWM(lednum*3+1, g);
   setPWM(lednum*3+2, b);
+}
+
+void Adafruit_TLC59711::simpleSetBrightness(uint8_t BC){
+//sets the brightness of all LED channels to  same value
+  if(BC > 127){
+    BC = 127; //maximum possible value since BC can only be 7 bit
+  } else if(BC < 0){
+    BC = 0;
+  }
+  
+  BCr = BCg = BCb = BC;
+}
+
+void Adafruit_TLC59711::setBrightness(uint8_t BCr, uint8_t BCg, uint8_t BCb){
+  if(bcr > 127){
+    bcr = 127; //maximum possible value since BC can only be 7 bit
+  } else if(bcr < 0){
+    bcr = 0;
+  }
+  
+  BCr = bcr;
+  
+  if(bcg > 127){
+    bcg = 127; //maximum possible value since BC can only be 7 bit
+  } else if(bcg < 0){
+    bcg = 0;
+  }
+  
+  BCg = bcg;
+  
+  if(bcb > 127){
+    bcb = 127; //maximum possible value since BC can only be 7 bit
+  } else if(bcb < 0){
+    bcb = 0;
+  }
+  
+  BCb = bcb;
 }
 
 

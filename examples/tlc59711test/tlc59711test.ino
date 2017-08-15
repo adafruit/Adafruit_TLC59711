@@ -56,6 +56,19 @@ void colorWipe(uint16_t r, uint16_t g, uint16_t b, uint8_t wait) {
       delay(wait);
   }
 }
+ 
+// Rainbow all LEDs at the same time, same color
+void rainbow(uint8_t wait) {
+  uint32_t i, j;
+
+  for(j=0; j<65535; j+=10) {
+    for(i=0; i<4*NUM_TLC59711; i++) {
+      Wheel(i, i+j & 65535);
+    }
+    tlc.write();
+    delay(wait);
+  }
+}
 
 // Slightly different, this makes the rainbow equally distributed throughout
 void rainbowCycle(uint8_t wait) {

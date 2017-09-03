@@ -35,7 +35,11 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n) {
   _dat = -1;
 
   SPI.setBitOrder(MSBFIRST);
+#ifdef __arm__
+  SPI.setClockDivider(42);
+#else
   SPI.setClockDivider(SPI_CLOCK_DIV8);
+#endif
   SPI.setDataMode(SPI_MODE0);
   BCr = BCg = BCb = 0x7F;
 
@@ -79,7 +83,7 @@ void Adafruit_TLC59711::write(void) {
   command <<= 7;
   command |= BCb;
 
-  cli();
+  noInterrupts();
   for (uint8_t n=0; n<numdrivers; n++) {
     spiwriteMSB(command >> 24);
     spiwriteMSB(command >> 16);
@@ -98,7 +102,7 @@ void Adafruit_TLC59711::write(void) {
     delayMicroseconds(200);
   else
     delayMicroseconds(2);
-  sei();
+  interrupts();
 }
 
 

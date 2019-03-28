@@ -8,8 +8,7 @@
  *  Pick one up today in the adafruit shop!
  *  ------> https://www.adafruit.com/product/1455
  *
- *  These sensor uses SPI to communicate, 3 pins are required to  
- *  interface: Data, Clock and Latch. The boards are chainable
+ *  Two SPI Pins are required to send data: clock and data pin.
  *
  *  Adafruit invests time and resources providing this open source code,
  *  please support Adafruit andopen-source hardware by purchasing products
@@ -24,7 +23,7 @@
 #define _ADAFRUIT_TLC59711_H
 
 #include <Arduino.h>
-
+#include <SPI.h>
 
 /*!
  *  @brief  Class that stores state and functions for interacting with
@@ -33,7 +32,7 @@
 class Adafruit_TLC59711 {
  public:
   Adafruit_TLC59711(uint8_t n, uint8_t c, uint8_t d);
-  Adafruit_TLC59711(uint8_t n);
+  Adafruit_TLC59711(uint8_t n, SPIClass *theSPI = &SPI);
 
   boolean begin();
 
@@ -47,6 +46,7 @@ class Adafruit_TLC59711 {
 
   uint8_t BCr, BCg, BCb;
   int8_t numdrivers, _clk, _dat;
+  SPIClass *_spi;
 
 };
 

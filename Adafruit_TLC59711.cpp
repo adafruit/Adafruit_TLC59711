@@ -4,8 +4,7 @@
   Pick one up today in the adafruit shop!
   ------> http://www.adafruit.com/products/1455
 
-  These drivers uses SPI to communicate, 3 pins are required to  
-  interface: Data, Clock and Latch. The boards are chainable
+  Two SPI Pins are required to send data: clock and data pin.
 
   Adafruit invests time and resources providing this open source code, 
   please support Adafruit and open-source hardware by purchasing 
@@ -39,22 +38,25 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n, uint8_t c, uint8_t d) {
 }
 
 /*!
- *  @brief  Instantiates a new Adafruit_TLC59711 class
+ *  @brief  Instantiates a new Adafruit_TLC59711 class using provided SPI
  *  @param  n
  *          number of connected drivers
+ *  @param  *theSPI
+ *          spi object
  */
-Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n) {
+Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n, SPIClass *theSPI) {
   numdrivers = n;
   _clk = -1;
   _dat = -1;
+  _spi = theSPI;
 
-  SPI.setBitOrder(MSBFIRST);
+  _spi->setBitOrder(MSBFIRST);
 #ifdef __arm__
-  SPI.setClockDivider(42);
+  _spi->setClockDivider(42);
 #else
-  SPI.setClockDivider(SPI_CLOCK_DIV8);
+  _spi->setClockDivider(SPI_CLOCK_DIV8);
 #endif
-  SPI.setDataMode(SPI_MODE0);
+  _spi->setDataMode(SPI_MODE0);
   BCr = BCg = BCb = 0x7F;
 
   pwmbuffer = (uint16_t *)calloc(2, 12*n);
@@ -78,7 +80,7 @@ void  Adafruit_TLC59711::spiwriteMSB(uint32_t d) {
       digitalWrite(_clk, HIGH);
     }
   } else {
-    SPI.transfer(d);
+    _spi->transfer(d);
   }
 }
 
@@ -168,7 +170,7 @@ boolean Adafruit_TLC59711::begin() {
     pinMode(_clk, OUTPUT);
     pinMode(_dat, OUTPUT);
   } else {
-    SPI.begin();
+    _spi->begin();
   }
   return true;
 }

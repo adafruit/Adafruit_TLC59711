@@ -39,7 +39,7 @@ class Adafruit_TLC59711 {
   void setPWM(uint8_t chan, uint16_t pwm);
   void setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b);
   void write();
-  void spiwriteMSB(uint32_t d);
+  void spiwriteMSB(uint8_t d);
 
  private:
   uint16_t *pwmbuffer;

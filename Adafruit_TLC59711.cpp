@@ -67,7 +67,7 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n, SPIClass *theSPI) {
  *  @param  d
  *          data
  */
-void  Adafruit_TLC59711::spiwriteMSB(uint32_t d) {
+void  Adafruit_TLC59711::spiwriteMSB(uint8_t d) {
   if (_clk >= 0) {
     uint32_t b = 0x80;
     //  b <<= (bits-1);
@@ -138,7 +138,7 @@ void Adafruit_TLC59711::write() {
  *          pwm value
  */
 void Adafruit_TLC59711::setPWM(uint8_t chan, uint16_t pwm) {
-  if (chan > 12*numdrivers); 
+  if (chan > 12*numdrivers) return; 
   pwmbuffer[chan] = pwm;  
 }
 

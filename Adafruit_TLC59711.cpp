@@ -82,7 +82,9 @@ void Adafruit_TLC59711::spiwriteMSB(uint8_t d) {
  *  @brief  Writes PWM buffer to board
  */
 void Adafruit_TLC59711::write() {
-  _spi->beginTransaction(SPI_SETTINGS);
+  if (_clk < 0) {
+    _spi->beginTransaction(SPI_SETTINGS);
+  }
 
   uint32_t command;
 
@@ -121,8 +123,8 @@ void Adafruit_TLC59711::write() {
     delayMicroseconds(200);
   else
     delayMicroseconds(2);
+    _spi->endTransaction();
 
-  _spi->endTransaction();
   interrupts();
 }
 

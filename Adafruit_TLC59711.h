@@ -30,7 +30,7 @@
  *          TLC59711 Senor
  */
 class Adafruit_TLC59711 {
- public:
+public:
   Adafruit_TLC59711(uint8_t n, uint8_t c, uint8_t d);
   Adafruit_TLC59711(uint8_t n, SPIClass *theSPI = &SPI);
 
@@ -40,15 +40,15 @@ class Adafruit_TLC59711 {
   void setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b);
   void write();
   void spiwriteMSB(uint8_t d);
+  void setBrightness(uint8_t bcr, uint8_t bcg, uint8_t bcb);
+  void simpleSetBrightness(uint8_t BC);
 
- private:
+private:
   uint16_t *pwmbuffer;
 
   uint8_t BCr, BCg, BCb;
   int8_t numdrivers, _clk, _dat;
   SPIClass *_spi;
-
 };
-
 
 #endif

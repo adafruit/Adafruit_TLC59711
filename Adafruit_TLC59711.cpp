@@ -17,7 +17,7 @@
 #include <Adafruit_TLC59711.h>
 #include <SPI.h>
 
-SPISettings SPI_SETTINGS(100, MSBFIRST, SPI_MODE0);
+SPISettings SPI_SETTINGS(500000, MSBFIRST, SPI_MODE0);
 
 /*!
  *  @brief  Instantiates a new Adafruit_TLC59711 class

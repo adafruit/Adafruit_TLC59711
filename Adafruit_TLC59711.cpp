@@ -1,4 +1,4 @@
-/*************************************************** 
+/***************************************************
   This is a library for our Adafruit 12-channel PWM/LED driver
 
   Pick one up today in the adafruit shop!
@@ -6,17 +6,18 @@
 
   Two SPI Pins are required to send data: clock and data pin.
 
-  Adafruit invests time and resources providing this open source code, 
-  please support Adafruit and open-source hardware by purchasing 
+  Adafruit invests time and resources providing this open source code,
+  please support Adafruit and open-source hardware by purchasing
   products from Adafruit!
 
-  Written by Limor Fried/Ladyada for Adafruit Industries.  
+  Written by Limor Fried/Ladyada for Adafruit Industries.
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
-
 #include <Adafruit_TLC59711.h>
 #include <SPI.h>
+
+SPISettings SPI_SETTINGS(100, MSBFIRST, SPI_MODE0);
 
 /*!
  *  @brief  Instantiates a new Adafruit_TLC59711 class
@@ -34,7 +35,7 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n, uint8_t c, uint8_t d) {
 
   BCr = BCg = BCb = 0x7F;
 
-  pwmbuffer = (uint16_t *)calloc(2, 12*n);
+  pwmbuffer = (uint16_t *)calloc(2, 12 * n);
 }
 
 /*!
@@ -50,16 +51,9 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n, SPIClass *theSPI) {
   _dat = -1;
   _spi = theSPI;
 
-  _spi->setBitOrder(MSBFIRST);
-#ifdef __arm__
-  _spi->setClockDivider(42);
-#else
-  _spi->setClockDivider(SPI_CLOCK_DIV8);
-#endif
-  _spi->setDataMode(SPI_MODE0);
   BCr = BCg = BCb = 0x7F;
 
-  pwmbuffer = (uint16_t *)calloc(2, 12*n);
+  pwmbuffer = (uint16_t *)calloc(2, 12 * n);
 }
 
 /*!
@@ -67,16 +61,16 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n, SPIClass *theSPI) {
  *  @param  d
  *          data
  */
-void  Adafruit_TLC59711::spiwriteMSB(uint8_t d) {
+void Adafruit_TLC59711::spiwriteMSB(uint8_t d) {
   if (_clk >= 0) {
     uint32_t b = 0x80;
     //  b <<= (bits-1);
-    for (; b!=0; b>>=1) {
+    for (; b != 0; b >>= 1) {
       digitalWrite(_clk, LOW);
-      if (d & b)  
-	digitalWrite(_dat, HIGH);
+      if (d & b)
+        digitalWrite(_dat, HIGH);
       else
-	digitalWrite(_dat, LOW);
+        digitalWrite(_dat, LOW);
       digitalWrite(_clk, HIGH);
     }
   } else {
@@ -88,13 +82,15 @@ void  Adafruit_TLC59711::spiwriteMSB(uint8_t d) {
  *  @brief  Writes PWM buffer to board
  */
 void Adafruit_TLC59711::write() {
+  _spi->beginTransaction(SPI_SETTINGS);
+
   uint32_t command;
 
   // Magic word for write
   command = 0x25;
 
   command <<= 5;
-  //OUTTMG = 1, EXTGCK = 0, TMGRST = 1, DSPRPT = 1, BLANK = 0 -> 0x16
+  // OUTTMG = 1, EXTGCK = 0, TMGRST = 1, DSPRPT = 1, BLANK = 0 -> 0x16
   command |= 0x16;
 
   command <<= 7;
@@ -107,17 +103,17 @@ void Adafruit_TLC59711::write() {
   command |= BCb;
 
   noInterrupts();
-  for (uint8_t n=0; n<numdrivers; n++) {
+  for (uint8_t n = 0; n < numdrivers; n++) {
     spiwriteMSB(command >> 24);
     spiwriteMSB(command >> 16);
     spiwriteMSB(command >> 8);
     spiwriteMSB(command);
 
     // 12 channels per TLC59711
-    for (int8_t c=11; c >= 0 ; c--) {
+    for (int8_t c = 11; c >= 0; c--) {
       // 16 bits per channel, send MSB first
-      spiwriteMSB(pwmbuffer[n*12+c]>>8);
-      spiwriteMSB(pwmbuffer[n*12+c]);
+      spiwriteMSB(pwmbuffer[n * 12 + c] >> 8);
+      spiwriteMSB(pwmbuffer[n * 12 + c]);
     }
   }
 
@@ -125,10 +121,10 @@ void Adafruit_TLC59711::write() {
     delayMicroseconds(200);
   else
     delayMicroseconds(2);
+
+  _spi->endTransaction();
   interrupts();
 }
-
-
 
 /*!
  *  @brief  Set PWM value on selected channel
@@ -138,12 +134,13 @@ void Adafruit_TLC59711::write() {
  *          pwm value
  */
 void Adafruit_TLC59711::setPWM(uint8_t chan, uint16_t pwm) {
-  if (chan > 12*numdrivers) return; 
-  pwmbuffer[chan] = pwm;  
+  if (chan > 12 * numdrivers)
+    return;
+  pwmbuffer[chan] = pwm;
 }
 
 /*!
- *  @brief  Set RGB value for selected LED 
+ *  @brief  Set RGB value for selected LED
  *  @param  lednum
  *          selected LED number that for which value will be set
  *  @param  r
@@ -153,10 +150,11 @@ void Adafruit_TLC59711::setPWM(uint8_t chan, uint16_t pwm) {
  *  @param b
  *          blue value
  */
-void Adafruit_TLC59711::setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b) {
-  setPWM(lednum*3, r);
-  setPWM(lednum*3+1, g);
-  setPWM(lednum*3+2, b);
+void Adafruit_TLC59711::setLED(uint8_t lednum, uint16_t r, uint16_t g,
+                               uint16_t b) {
+  setPWM(lednum * 3, r);
+  setPWM(lednum * 3 + 1, g);
+  setPWM(lednum * 3 + 2, b);
 }
 
 /*!
@@ -164,7 +162,8 @@ void Adafruit_TLC59711::setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t 
  *  @return If successful returns true, otherwise false
  */
 boolean Adafruit_TLC59711::begin() {
-  if (!pwmbuffer) return false;
+  if (!pwmbuffer)
+    return false;
 
   if (_clk >= 0) {
     pinMode(_clk, OUTPUT);

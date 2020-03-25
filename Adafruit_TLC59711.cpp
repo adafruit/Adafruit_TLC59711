@@ -123,7 +123,7 @@ void Adafruit_TLC59711::write() {
     delayMicroseconds(200);
   else
     delayMicroseconds(2);
-    _spi->endTransaction();
+  _spi->endTransaction();
 
   interrupts();
 }

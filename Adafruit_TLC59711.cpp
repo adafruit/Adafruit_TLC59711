@@ -1,22 +1,37 @@
-/***************************************************
-  This is a library for our Adafruit 12-channel PWM/LED driver
-
-  Pick one up today in the adafruit shop!
-  ------> http://www.adafruit.com/products/1455
-
-  Two SPI Pins are required to send data: clock and data pin.
-
-  Adafruit invests time and resources providing this open source code,
-  please support Adafruit and open-source hardware by purchasing
-  products from Adafruit!
-
-  Written by Limor Fried/Ladyada for Adafruit Industries.
-  BSD license, all text above must be included in any redistribution
- ****************************************************/
+/*!
+ * @file Adafruit_TLC59711.cpp
+ *
+ * @mainpage Adafruit TLC59711 PWM/LED driver
+ *
+ * @section intro_sec Introduction
+ *
+ * This is a library for our Adafruit 12-channel PWM/LED driver
+ *
+ * Pick one up today in the adafruit shop!
+ * ------> http://www.adafruit.com/products/1455
+ *
+ * Two SPI Pins are required to send data: clock and data pin.
+ *
+ * Adafruit invests time and resources providing this open source code,
+ * please support Adafruit and open-source hardware by purchasing
+ * products from Adafruit!
+ *
+ * @section author Author
+ *
+ * Written by Limor Fried/Ladyada for Adafruit Industries.
+ *
+ * @section license License
+ *
+ * BSD license, all text above must be included in any redistribution
+ */
 
 #include <Adafruit_TLC59711.h>
 #include <SPI.h>
 
+/*!
+ * @brief SPI settings
+ * @return Returns nothing
+ */
 SPISettings SPI_SETTINGS(500000, MSBFIRST, SPI_MODE0);
 
 /*!

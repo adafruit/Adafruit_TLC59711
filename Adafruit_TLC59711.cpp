@@ -136,9 +136,10 @@ void Adafruit_TLC59711::write() {
 
   if (_clk >= 0)
     delayMicroseconds(200);
-  else
+  else {
     delayMicroseconds(2);
-  _spi->endTransaction();
+    _spi->endTransaction();
+  }
 
   interrupts();
 }

@@ -22,8 +22,8 @@
 #ifndef _ADAFRUIT_TLC59711_H
 #define _ADAFRUIT_TLC59711_H
 
-#include <Arduino.h>
 #include <Adafruit_SPIDevice.h>
+#include <Arduino.h>
 
 /*!
  *  @brief  Class that stores state and functions for interacting with

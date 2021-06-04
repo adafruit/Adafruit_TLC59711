@@ -44,7 +44,6 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n, uint8_t c, uint8_t d) {
   pwmbuffer = (uint16_t *)calloc(2, 12 * n);
 
   _spi_dev = new Adafruit_SPIDevice(-1, c, -1, d, 1000000);
-
 }
 
 /*!
@@ -62,9 +61,8 @@ Adafruit_TLC59711::Adafruit_TLC59711(uint8_t n, SPIClass *theSPI) {
   pwmbuffer = (uint16_t *)calloc(2, 12 * n);
 
   _spi_dev = new Adafruit_SPIDevice(-1, 1000000, SPI_BITORDER_MSBFIRST,
-				    SPI_MODE0, theSPI);
+                                    SPI_MODE0, theSPI);
 }
-
 
 /*!
  *  @brief  Writes PWM buffer to board

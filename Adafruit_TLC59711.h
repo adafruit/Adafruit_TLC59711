@@ -39,7 +39,6 @@ public:
   void setPWM(uint8_t chan, uint16_t pwm);
   void setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b);
   void write();
-  void spiwriteMSB(uint8_t d);
   void setBrightness(uint8_t bcr, uint8_t bcg, uint8_t bcb);
   void simpleSetBrightness(uint8_t BC);
 

@@ -31,7 +31,11 @@ void setup() {
   Serial.begin(9600);
   
   Serial.println("TLC59711 test");
-  pinMode(10, OUTPUT);
+  
+  // Uncomment this line if using UNO/AVR since 10 has to be an output
+  // for hardware SPI to work
+  //pinMode(10, OUTPUT);
+
   tlc.begin();
   tlc.write();
 }

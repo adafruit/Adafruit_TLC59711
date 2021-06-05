@@ -140,6 +140,17 @@ void Adafruit_TLC59711::setLED(uint8_t lednum, uint16_t r, uint16_t g,
   setPWM(lednum * 3 + 2, b);
 }
 
+/*!
+ *  @brief  Get RGB value for selected LED
+ *  @param  lednum
+ *          selected LED number that for which value will be set
+ *  @param  r
+ *          red value
+ *  @param g
+ *          green value
+ *  @param b
+ *          blue value
+ */
 void Adafruit_TLC59711::getLED(uint8_t lednum, uint16_t& r, uint16_t& g, uint16_t& b) {
   r = pwmbuffer[lednum * 3];
   g = pwmbuffer[lednum * 3 + 1];

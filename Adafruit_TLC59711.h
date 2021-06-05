@@ -22,8 +22,8 @@
 #ifndef _ADAFRUIT_TLC59711_H
 #define _ADAFRUIT_TLC59711_H
 
+#include <Adafruit_SPIDevice.h>
 #include <Arduino.h>
-#include <SPI.h>
 
 /*!
  *  @brief  Class that stores state and functions for interacting with
@@ -34,21 +34,20 @@ public:
   Adafruit_TLC59711(uint8_t n, uint8_t c, uint8_t d);
   Adafruit_TLC59711(uint8_t n, SPIClass *theSPI = &SPI);
 
-  boolean begin();
+  bool begin();
 
   void setPWM(uint8_t chan, uint16_t pwm);
   void setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b);
   void write();
-  void spiwriteMSB(uint8_t d);
   void setBrightness(uint8_t bcr, uint8_t bcg, uint8_t bcb);
   void simpleSetBrightness(uint8_t BC);
 
 private:
-  uint16_t *pwmbuffer;
+  uint16_t *pwmbuffer = NULL;
 
-  uint8_t BCr, BCg, BCb;
-  int8_t numdrivers, _clk, _dat;
-  SPIClass *_spi;
+  uint8_t BCr = 0, BCg = 0, BCb = 0;
+  int8_t numdrivers = 0;
+  Adafruit_SPIDevice *_spi_dev = NULL;
 };
 
 #endif

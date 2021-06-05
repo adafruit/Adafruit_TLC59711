@@ -79,9 +79,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adb44d5aaf44b3b646996b03c1a27c1e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___t_l_c59711.html#adb44d5aaf44b3b646996b03c1a27c1e1">Adafruit_TLC59711</a> (uint8_t n, SPIClass *theSPI=&amp;SPI)</td></tr>
 <tr class="memdesc:adb44d5aaf44b3b646996b03c1a27c1e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new <a class="el" href="class_adafruit___t_l_c59711.html" title="Class that stores state and functions for interacting with TLC59711 Senor. ">Adafruit_TLC59711</a> class using provided SPI.  <a href="#adb44d5aaf44b3b646996b03c1a27c1e1">More...</a><br /></td></tr>
 <tr class="separator:adb44d5aaf44b3b646996b03c1a27c1e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af305bd094a378e8ead923c2979adbc52"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___t_l_c59711.html#af305bd094a378e8ead923c2979adbc52">begin</a> ()</td></tr>
-<tr class="memdesc:af305bd094a378e8ead923c2979adbc52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins SPI connection if there is not empty PWM buffer.  <a href="#af305bd094a378e8ead923c2979adbc52">More...</a><br /></td></tr>
-<tr class="separator:af305bd094a378e8ead923c2979adbc52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55272e571fb2c6c910e240cc2cceff18"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___t_l_c59711.html#a55272e571fb2c6c910e240cc2cceff18">begin</a> ()</td></tr>
+<tr class="memdesc:a55272e571fb2c6c910e240cc2cceff18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins SPI connection if there is not empty PWM buffer.  <a href="#a55272e571fb2c6c910e240cc2cceff18">More...</a><br /></td></tr>
+<tr class="separator:a55272e571fb2c6c910e240cc2cceff18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39bfa456b8b08c9f026144165534a4a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___t_l_c59711.html#a39bfa456b8b08c9f026144165534a4a8">setPWM</a> (uint8_t chan, uint16_t pwm)</td></tr>
 <tr class="memdesc:a39bfa456b8b08c9f026144165534a4a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set PWM value on selected channel.  <a href="#a39bfa456b8b08c9f026144165534a4a8">More...</a><br /></td></tr>
 <tr class="separator:a39bfa456b8b08c9f026144165534a4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -92,6 +92,9 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___t_l_c59711.html#a37ecc9c0503fbd6b75cfc125ea7505b6">write</a> ()</td></tr>
 <tr class="memdesc:a37ecc9c0503fbd6b75cfc125ea7505b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes PWM buffer to board. <br /></td></tr>
 <tr class="separator:a37ecc9c0503fbd6b75cfc125ea7505b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0d1c38dfc60efd3552c50a51348018c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___t_l_c59711.html#ab0d1c38dfc60efd3552c50a51348018c">spiwriteMSB</a> (uint8_t d)</td></tr>
+<tr class="memdesc:ab0d1c38dfc60efd3552c50a51348018c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data throught SPI at MSB.  <a href="#ab0d1c38dfc60efd3552c50a51348018c">More...</a><br /></td></tr>
+<tr class="separator:ab0d1c38dfc60efd3552c50a51348018c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28ef6f75e940e3f8cba4b728dadb63aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___t_l_c59711.html#a28ef6f75e940e3f8cba4b728dadb63aa">setBrightness</a> (uint8_t bcr, uint8_t bcg, uint8_t bcb)</td></tr>
 <tr class="memdesc:a28ef6f75e940e3f8cba4b728dadb63aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the brightness of LED channels to specific value.  <a href="#a28ef6f75e940e3f8cba4b728dadb63aa">More...</a><br /></td></tr>
 <tr class="separator:a28ef6f75e940e3f8cba4b728dadb63aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,14 +187,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="af305bd094a378e8ead923c2979adbc52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af305bd094a378e8ead923c2979adbc52">&#9670;&nbsp;</a></span>begin()</h2>
+<a id="a55272e571fb2c6c910e240cc2cceff18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55272e571fb2c6c910e240cc2cceff18">&#9670;&nbsp;</a></span>begin()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Adafruit_TLC59711::begin </td>
+          <td class="memname">boolean Adafruit_TLC59711::begin </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -286,6 +289,32 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
     <tr><td class="paramname">r</td><td>red value </td></tr>
     <tr><td class="paramname">g</td><td>green value </td></tr>
     <tr><td class="paramname">b</td><td>blue value </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab0d1c38dfc60efd3552c50a51348018c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0d1c38dfc60efd3552c50a51348018c">&#9670;&nbsp;</a></span>spiwriteMSB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Adafruit_TLC59711::spiwriteMSB </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>d</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write data throught SPI at MSB. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d</td><td>data </td></tr>
   </table>
   </dd>
 </dl>

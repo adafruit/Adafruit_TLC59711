@@ -88,6 +88,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8a2018b1ef1141ccb637cf02fb059035"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___t_l_c59711.html#a8a2018b1ef1141ccb637cf02fb059035">setLED</a> (uint8_t lednum, uint16_t r, uint16_t g, uint16_t b)</td></tr>
 <tr class="memdesc:a8a2018b1ef1141ccb637cf02fb059035"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set RGB value for selected LED.  <a href="#a8a2018b1ef1141ccb637cf02fb059035">More...</a><br /></td></tr>
 <tr class="separator:a8a2018b1ef1141ccb637cf02fb059035"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f7f820c0b534e44f9b24789c073cf79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___t_l_c59711.html#a3f7f820c0b534e44f9b24789c073cf79">getLED</a> (uint8_t lednum, uint16_t &amp;r, uint16_t &amp;g, uint16_t &amp;b)</td></tr>
+<tr class="memdesc:a3f7f820c0b534e44f9b24789c073cf79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get RGB value for selected LED.  <a href="#a3f7f820c0b534e44f9b24789c073cf79">More...</a><br /></td></tr>
+<tr class="separator:a3f7f820c0b534e44f9b24789c073cf79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37ecc9c0503fbd6b75cfc125ea7505b6"><td class="memItemLeft" align="right" valign="top"><a id="a37ecc9c0503fbd6b75cfc125ea7505b6"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___t_l_c59711.html#a37ecc9c0503fbd6b75cfc125ea7505b6">write</a> ()</td></tr>
 <tr class="memdesc:a37ecc9c0503fbd6b75cfc125ea7505b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes PWM buffer to board. <br /></td></tr>
@@ -280,6 +283,57 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Set RGB value for selected LED. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lednum</td><td>selected LED number that for which value will be set </td></tr>
+    <tr><td class="paramname">r</td><td>red value </td></tr>
+    <tr><td class="paramname">g</td><td>green value </td></tr>
+    <tr><td class="paramname">b</td><td>blue value </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3f7f820c0b534e44f9b24789c073cf79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f7f820c0b534e44f9b24789c073cf79">&#9670;&nbsp;</a></span>getLED()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Adafruit_TLC59711::getLED </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>lednum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get RGB value for selected LED. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lednum</td><td>selected LED number that for which value will be set </td></tr>

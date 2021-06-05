@@ -140,6 +140,13 @@ void Adafruit_TLC59711::setLED(uint8_t lednum, uint16_t r, uint16_t g,
   setPWM(lednum * 3 + 2, b);
 }
 
+void Adafruit_TLC59711::getLED(uint8_t lednum, uint16_t& r, uint16_t& g, uint16_t& b) {
+  r = pwmbuffer[lednum * 3];
+  g = pwmbuffer[lednum * 3 + 1];
+  b = pwmbuffer[lednum * 3 + 2];
+}
+
+
 /*!
  *  @brief  Set the brightness of LED channels to same value
  *  @param  BC

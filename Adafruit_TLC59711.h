@@ -36,7 +36,7 @@ public:
 
   bool begin();
 
-  void setPWM(uint8_t chan, uint16_t pwm);
+  void setPWM(uint16_t chan, uint16_t pwm);
   void setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b);
   void getLED(uint8_t lednum, uint16_t &r, uint16_t &g, uint16_t &b);
   void write();

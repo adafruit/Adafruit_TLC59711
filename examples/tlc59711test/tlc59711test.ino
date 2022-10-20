@@ -67,7 +67,7 @@ void rainbow(uint8_t wait) {
 
   for(j=0; j<65535; j+=10) {
     for(i=0; i<4*NUM_TLC59711; i++) {
-      Wheel(i, i+j & 65535);
+      Wheel(i, (i+j) & 65535);
     }
     tlc.write();
     delay(wait);

@@ -133,7 +133,7 @@ void Adafruit_TLC59711::setPWM(uint16_t chan, uint16_t pwm) {
  *  @param b
  *          blue value
  */
-void Adafruit_TLC59711::setLED(uint8_t lednum, uint16_t r, uint16_t g,
+void Adafruit_TLC59711::setLED(uint16_t lednum, uint16_t r, uint16_t g,
                                uint16_t b) {
   setPWM(lednum * 3, r);
   setPWM(lednum * 3 + 1, g);
@@ -151,7 +151,7 @@ void Adafruit_TLC59711::setLED(uint8_t lednum, uint16_t r, uint16_t g,
  *  @param b
  *          blue value
  */
-void Adafruit_TLC59711::getLED(uint8_t lednum, uint16_t &r, uint16_t &g,
+void Adafruit_TLC59711::getLED(uint16_t lednum, uint16_t &r, uint16_t &g,
                                uint16_t &b) {
   r = pwmbuffer[lednum * 3];
   g = pwmbuffer[lednum * 3 + 1];

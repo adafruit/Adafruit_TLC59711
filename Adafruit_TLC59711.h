@@ -37,8 +37,8 @@ public:
   bool begin();
 
   void setPWM(uint16_t chan, uint16_t pwm);
-  void setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b);
-  void getLED(uint8_t lednum, uint16_t &r, uint16_t &g, uint16_t &b);
+  void setLED(uint16_t lednum, uint16_t r, uint16_t g, uint16_t b);
+  void getLED(uint16_t lednum, uint16_t &r, uint16_t &g, uint16_t &b);
   void write();
   void setBrightness(uint8_t bcr, uint8_t bcg, uint8_t bcb);
   void simpleSetBrightness(uint8_t BC);
@@ -47,7 +47,7 @@ private:
   uint16_t *pwmbuffer = NULL;
 
   uint8_t BCr = 0, BCg = 0, BCb = 0;
-  int8_t numdrivers = 0;
+  uint8_t numdrivers = 0;
   Adafruit_SPIDevice *_spi_dev = NULL;
 };
 
